@@ -145,6 +145,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "video"
+    }
+  },
+  "defaultProject": "video",
+  "cli": {
+    "analytics": "572cfceb-a234-4766-9723-a09103611733"
+  }
 }

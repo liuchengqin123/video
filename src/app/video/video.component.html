@@ -1,0 +1,36 @@
+<div class="video-container">
+  <div class="video-wrap">
+<!--    <div class="search-nothing">-->
+<!--      <p class="textShow" [hidden]="getSrc">抱歉，没有找到你想要的！</p>-->
+<!--    </div>-->
+    <div class="video-show">
+      <mat-spinner #spinner  class="mat-spinner" *ngIf="isShowSpinner"></mat-spinner>
+      <video #myVideo  (canplay)="getTotalTime()" (timeupdate)="getCurrentTime()"
+      (volumechange)="volumeChange()" (ended)="ended()" (waiting)="toggleWaiting()">
+      </video>
+      <div class="controls">
+        <div class="controls-top" #barBottom (mouseup)="setProgressBar($event)">
+          <div class="progress-bar" #progressBar [ngStyle]="ProgressBar()"  ></div>
+        </div>
+        <div class="controls-wrap">
+          <div class="controls-wrap-left">
+            <span class="video-play-or-stop">
+              <i [ngClass]="{'video-play-icon':!isPaused, 'video-close-icon': isPaused}" (click)="togglePlay()"></i>
+            </span>
+            <span class="time"> {{currentTime}}/{{totalTime}} </span>
+          </div>
+          <div class="controls-wrap-right">
+            <span class="voice">
+              <div class="voice-bar" (mouseup)="handleVolProgressDown($event)">
+                <div class="voice-bar-control" #voice ></div>
+              </div>
+              <i [ngClass]="{ 'voice-play-icon': !isMuted, 'voice-stop-icon': (isMuted || volume === 0)}"
+                 (click)="toggleMuted()"></i>
+            </span>
+            <span class="full-screen"><i class="full-screen-icon" (click)="toggleFullScreen()"></i></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
